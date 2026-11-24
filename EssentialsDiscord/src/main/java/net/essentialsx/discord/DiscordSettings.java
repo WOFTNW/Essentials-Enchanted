@@ -3,7 +3,6 @@ package net.essentialsx.discord;
 import com.earth2me.essentials.IConf;
 import com.earth2me.essentials.config.ConfigurateUtil;
 import com.earth2me.essentials.config.EssentialsConfiguration;
-import com.earth2me.essentials.utils.AdventureUtil;
 import com.earth2me.essentials.utils.FormatUtil;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
@@ -485,7 +484,7 @@ public class DiscordSettings implements IConf {
     @Override
     public void reloadConfig() {
         if (plugin.isInvalidStartup()) {
-            plugin.getLogger().warning(AdventureUtil.miniToLegacy(tlLiteral("discordReloadInvalid")));
+            plugin.getLogger().warning(plugin.getEss().getAdventureFacet().miniToLegacy(tlLiteral("discordReloadInvalid")));
             return;
         }
 
@@ -601,7 +600,7 @@ public class DiscordSettings implements IConf {
                 "username", "displayname", "controllername", "controllerdisplayname", "reason");
         kickFormat = generateMessageFormat(getFormatString("kick"), "{displayname} was kicked with reason: {reason}", false,
                 "username", "displayname", "reason");
-        pmToDiscordFormat = generateMessageFormat(getFormatString("private-chat"), "[SocialSpy] {sender-username} -> {receiver-username}: {message}", false,
+        pmToDiscordFormat = generateMessageFormat(getFormatString("pms-to-discord"), "[SocialSpy] {sender-username} -> {receiver-username}: {message}", false,
                 "sender-username", "sender-displayname", "receiver-username", "receiver-displayname", "message");
 
         plugin.onReload();
